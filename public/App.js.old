@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+import { Container, Grid, Typography } from "@mui/material";
+import UnitList from "./components/UnitList";
+import UnitCard from "./components/UnitCard";
+
+function App() {
+  const [selectedUnitId, setSelectedUnitId] = useState(null);
+
+  return (
+    <Container sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Dust 1947 – Einheiten
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={4}>
+          <UnitList onSelect={setSelectedUnitId} />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          {selectedUnitId ? (
+            <UnitCard unitId={selectedUnitId} onBack={() => setSelectedUnitId(null)} />
+          ) : (
+            <Typography variant="h6" sx={{ mt: 5 }}>
+              Bitte eine Einheit auswählen
+            </Typography>
+          )}
+        </Grid>
+      </Grid>
+    </Container>
+  );
+}
+
+export default App;
